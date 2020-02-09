@@ -1,0 +1,37 @@
+%!TEX program=pdflatex
+
+\documentclass[14pt]{extarticle}
+
+%Russian-specific packages
+%--------------------------------------
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+%--------------------------------------
+ 
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{ма-те-ма-ти-ка вос-ста-нав-ли-вать}
+%--------------------------------------
+
+\usepackage{geometry}
+\usepackage{indentfirst}  % абзацный отступ
+\usepackage{misccorr}     % точка после номера раздела
+\usepackage{mmap}
+
+\geometry{a4paper,
+    left=3cm,
+    right=1.5cm,
+    top=2cm,
+    bottom=2cm
+  }
+
+\input{source/commands}
+
+\begin{document}
+    \input{source/title}
+    \input{source/{{cookiecutter.project_name}}.source.tex}
+
+\end{document}
+
