@@ -1,18 +1,16 @@
 TEX_SOURCE := {{cookiecutter.project_name}}
 
-PROGRAM := latexmk
-VIEWPDFPARAM = -pv
-BUILDPARAM = -cd -f -pdf -interaction=nonstopmode -synctex=1
-WATCHPARAM = -pvc -f -pdf -interaction=nonstopmode -synctex=1
-TEMP_FILES = *.aux *.fdb_latexmk *.fls *.log *.out *.synctex.gz *.xdv
+BUILDPARAM = -cd -f -pdf -interaction=nonstopmode -synctex=1 -latexoption=-shell-escape
+WATCHPARAM = -pvc -f -pdf -interaction=nonstopmode -synctex=1 -latexoption=-shell-escape
+TEMP_FILES = *.aux *.fdb_latexmk *.fls *.log *.out *.synctex.gz *.xdv *.bbl *.bcf *.blg *.run.xml *.toc
 
 .PHONY: build
 build:
-	$(PROGRAM) $(VIEWPDFPARAM) $(BUILDPARAM) $(TEX_SOURCE).tex
+	latexmk $(BUILDPARAM) $(TEX_SOURCE).tex
 
 .PHONY: watch
 watch:
-	$(PROGRAM) $(WATCHPARAM) $(TEX_SOURCE).tex
+	latexmk $(WATCHPARAM) $(TEX_SOURCE).tex
 
 .PHONY: clean
 clean:

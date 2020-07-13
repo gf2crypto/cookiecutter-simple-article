@@ -2,12 +2,10 @@
 
 set TEX_SOURCE="{{cookiecutter.project_name}}"
 
-set PROGRAM=latexmk
-set VIEWPDFPARAM=-pv
-set BUILDPARAM=-cd -f -pdf -interaction=nonstopmode -synctex=1
-set WATCHPARAM=-pvc -f -pdf -interaction=nonstopmode -synctex=1
+set BUILDPARAM=-cd -f -pdf -interaction=nonstopmode -synctex=1 -latexoption=-shell-escape
+set WATCHPARAM=-pvc -f -pdf -interaction=nonstopmode -synctex=1 -latexoption=-shell-escape
 
-set TEMP_FILES=("*.aux", "*.fdb_latexmk", "*.fls", "*.log", "*.out", "*.synctex.gz", "*.xdv")
+set TEMP_FILES=("*.aux", "*.fdb_latexmk", "*.fls", "*.log", "*.out", "*.synctex.gz", "*.xdv", "*.bbl", "*.bcf", "*.blg", "*.run.xml", "*.toc")
 
 set ACTION=%1
 
@@ -34,12 +32,12 @@ echo.
 goto exit
 
 :build
-%PROGRAM% %VIEWPDFPARAM% %BUILDPARAM% %TEX_SOURCE%.tex
+latexmk %BUILDPARAM% %TEX_SOURCE%.tex
 
 goto exit
 
 :watch
-%PROGRAM% %WATCHPARAM% %TEX_SOURCE%.tex
+latexmk %WATCHPARAM% %TEX_SOURCE%.tex
 
 goto exit
 
